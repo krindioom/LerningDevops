@@ -7,20 +7,15 @@ namespace Server.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        [HttpGet("values")]
+        [HttpGet("get-values")]
         public async Task<ActionResult> GetValuesAsync()
         {
-            var values = new 
-            { 
-                Value1 = 2,
-                Value2 = 3,
-                Value3 = 4,
-                Value4 = 5,
-                Value5 = 6,
-                Value6 = 7,
-                Value7 = 8,
-                Value8 = 9,
+            string[] values = { 
+                "a1",
+                "a2",
+                "a3"
             };
+            
             return Ok(values);
         }
     }
