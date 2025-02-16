@@ -1,0 +1,25 @@
+.scrollable-chart-container {
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+    height: 400px; /* Высота графика */
+    border: 1px solid #ccc;
+  }
+  
+  .y-axis {
+    position: sticky;
+    left: 0;
+    background: white; /* Фон оси Y для читаемости */
+    z-index: 1;
+  }
+  
+  .chart-scroll-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+  }
+  
+  .line-chart {
+    display: block;
+  }
+  

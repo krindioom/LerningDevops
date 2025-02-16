@@ -1,0 +1,19 @@
+{
+  "name": "volume",
+  "times": [
+    {
+      "changes": [
+        { "value": 127, "time": 0 },
+        { "value": 0, "time": 1 },
+        { "value": 127, "time": 4 },
+        { "value": 0, "time": 5 },
+        { "value": 127, "time": 6 },
+        { "value": 0, "time": 7 },
+        { "value": 127, "time": 8 },
+        { "value": 0, "time": 10 }
+      ]
+    }
+  ],
+  "ccType": "1",
+  "guid": "cc93c49c-f75d-4426-bccb-1dd0f00ea108"
+}

@@ -3,14 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-midi/hooks": "^2.0.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@wavesurfer/react": "^1.0.7",
     "axios": "^1.7.7",
+    "chart.js": "^4.4.6",
+    "chartjs-plugin-dragdata": "^2.3.1",
+    "d3": "^7.9.0",
+    "echarts": "^5.5.1",
+    "echarts-for-react": "^3.0.2",
+    "howler": "^2.2.4",
+    "konva": "^9.3.16",
+    "osc-js": "^2.4.1",
     "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-d3-library": "^1.1.8",
     "react-dom": "^18.3.1",
+    "react-draggable": "^4.4.6",
+    "react-h5-audio-player": "^3.9.3",
+    "react-konva": "^18.2.10",
+    "react-midi": "^0.0.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "recharts": "^2.13.3",
+    "recoil": "^0.7.7",
+    "tone": "^15.0.4",
+    "wavesurfer.js": "^7.8.8",
+    "web-vitals": "^2.1.4",
+    "xstate": "^5.19.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,5 +56,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.25.9"
   }
 }

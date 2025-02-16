@@ -1,0 +1,125 @@
+import React, { useEffect, useRef, useState } from 'react';
+import ReactECharts from 'echarts-for-react';
+import * as echarts from 'echarts';
+import axios from 'axios';
+
+const GanttChart = () => {
+  const chartRef = useRef(null);
+  const [option, setOption] = useState({});
+  const [draggable, setDraggable] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get(
+        'https://echarts.apache.org/examples/data/asset/data/airport-schedule.json'
+      );
+
+      setOption(makeOption(data));
+      initDrag(data);
+    };
+
+    fetchData();
+  }, []);
+
+  const makeOption = (rawData) => ({
+    tooltip: {},
+    animation: false,
+    toolbox: {
+      feature: {
+        myDrag: {
+          show: true,
+          title: 'Make bars draggable',
+          icon: 'path://M...Z', // Укоротил для читаемости
+          onclick: onDragSwitchClick,
+        },
+      },
+    },
+    title: {
+      text: 'Gantt of Airport Flight',
+      left: 'center',
+    },
+    grid: {
+      show: true,
+      top: 70,
+      bottom: 20,
+      left: 100,
+      right: 20,
+      backgroundColor: '#fff',
+      borderWidth: 0,
+    },
+    xAxis: {
+      type: 'time',
+      position: 'top',
+      axisLabel: { color: '#929ABA' },
+    },
+    yAxis: {
+      axisLabel: { show: false },
+      min: 0,
+      max: rawData.parkingApron.data.length,
+    },
+    series: [
+      {
+        id: 'flightData',
+        type: 'custom',
+        renderItem: (params, api) => renderGanttItem(params, api, rawData),
+        dimensions: rawData.flight.dimensions,
+        encode: {
+          x: [1, 2],
+          y: 0,
+        },
+        data: rawData.flight.data,
+      },
+    ],
+  });
+
+  const renderGanttItem = (params, api, rawData) => {
+    const categoryIndex = api.value(0);
+    const timeArrival = api.coord([api.value(1), categoryIndex]);
+    const timeDeparture = api.coord([api.value(2), categoryIndex]);
+    const barHeight = api.size([0, 1])[1] * 0.6;
+
+    return {
+      type: 'rect',
+      shape: {
+        x: timeArrival[0],
+        y: timeArrival[1] - barHeight,
+        width: timeDeparture[0] - timeArrival[0],
+        height: barHeight,
+      },
+      style: api.style(),
+    };
+  };
+
+  const onDragSwitchClick = () => {
+    setDraggable((prev) => !prev);
+    const instance = chartRef.current.getEchartsInstance();
+    instance.setOption({
+      dataZoom: [{ disabled: draggable }],
+    });
+  };
+
+  const initDrag = (rawData) => {
+    const chartInstance = chartRef.current.getEchartsInstance();
+
+    chartInstance.on('mousedown', (params) => {
+      if (!draggable || params.seriesIndex == null) return;
+      console.log('Drag start', params);
+    });
+
+    chartInstance.getZr().on('mouseup', () => {
+      console.log('Drag end');
+    });
+  };
+
+  return (
+    <ReactECharts
+      ref={chartRef}
+      option={option}
+      style={{ height: '600px', width: '100%' }}
+      notMerge={true}
+      lazyUpdate={true}
+    />
+  );
+};
+
+export default GanttChart;

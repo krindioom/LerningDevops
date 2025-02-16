@@ -1,0 +1,38 @@
+.playlist-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .tracks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .track {
+    display: flex;
+    justify-content: space-between;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }
+  
